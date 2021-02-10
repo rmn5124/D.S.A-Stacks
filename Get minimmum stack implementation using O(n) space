@@ -1,0 +1,59 @@
+/* Get minimmum stack implementation using O(n) space
+input:
+2
+7
+8 6 5 40 9 3 6
+8
+6 1 5 4 0 1 6 4
+output:
+8 6 5 5 5 3 3 
+3 1 1 1 0 0 0 0 
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+#define tst               long t;cin>>t;while(t--)
+#define rep(i,a,n)         for(int i=a;i<n;i++)
+#define ull               unsigned long long int
+#define ll                long long int
+ stack<int>s,ss;
+ int getMin(){
+     if(ss.size()==0) return -1;
+     return ss.top();
+ }
+ void push(int a){
+     s.push(a);
+     if(ss.size()==0 || ss.top()>=a)
+     ss.push(a);
+     return;
+ }
+ int pop(){
+     if(s.size()==0){
+         return -1;
+     }
+     int ans=s.top();
+     s.pop();
+     if(ss.top()==ans) ss.pop();
+     return ans;
+ }
+
+int main(){
+   ios_base::sync_with_stdio(false);
+   cin.tie(NULL);cout.tie(NULL);
+ 
+   #ifndef ONLINE_JUDGE
+   freopen("input.txt", "r", stdin);
+   freopen("output.txt", "w", stdout);
+   #endif
+   tst{
+ int n;cin>>n;int a[n];rep(i,0,n) cin>>a[i];
+   rep(i,0,n){
+
+       push(a[i]);
+     
+       cout<<getMin()<<" ";
+   }
+   cout<<endl;
+   } 
+return 0;   
+}
